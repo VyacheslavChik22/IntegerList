@@ -5,11 +5,11 @@ public class Main {
         MyIntegersList myIntegersList = new MyIntegersList();
         myIntegersList.add(0, 10);
         myIntegersList.add(1, 20);
-        myIntegersList.add(2, 30);
+
         System.out.println(Arrays.toString(myIntegersList.toArray()));
         // System.out.println(myIntegersList.indexOf(30));
         // System.out.println(myIntegersList.remove(30));
-        // System.out.println(myIntegersList.remove(2));
+         System.out.println(myIntegersList.remove(1));
         // System.out.println(myIntegersList.contains(30));
         // System.out.println(myIntegersList.lastIndexOf(10));
         //System.out.println(myIntegersList.get(1));

@@ -7,7 +7,7 @@ public class MyIntegersList implements MyArrayList {
     private Integer item;
 
     public MyIntegersList() {
-        this.terminal = new Integer[10];
+        this.terminal = new Integer[2];
     }
 
 
