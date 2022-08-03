@@ -20,8 +20,8 @@ public class SortArray {
         for (int i = 0; i < iteration; i++) {
             int[] array = generateArray(100_000);
             long start = System.currentTimeMillis();
-            long end = System.currentTimeMillis() - start;
             sortBubble(array);
+            long end = System.currentTimeMillis() - start;
             sum += end;
         }
         return sum / iteration;
@@ -33,8 +33,8 @@ public class SortArray {
         for (int i = 0; i < iteration; i++) {
             int[] array = generateArray(100_000);
             long start = System.currentTimeMillis();
-            long end = System.currentTimeMillis() - start;
             sortSelection(array);
+            long end = System.currentTimeMillis() - start;
             sum += end;
         }
         return sum / iteration;
@@ -46,8 +46,8 @@ public class SortArray {
         for (int i = 0; i < iteration; i++) {
             int[] array = generateArray(100_000);
             long start = System.currentTimeMillis();
-            long end = System.currentTimeMillis() - start;
             sortInsertion(array);
+            long end = System.currentTimeMillis() - start;
             sum += end;
         }
         return sum / iteration;
