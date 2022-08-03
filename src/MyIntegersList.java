@@ -93,7 +93,22 @@ public class MyIntegersList implements MyArrayList {
     @Override
     public boolean contains(Integer item) {
         Integer findItem = indexOf(item); // используем метод поиска элемента
-        return findItem != -1;            // если элемент есть, то возвращаем его
+        sort();
+        int min = 0;
+        int max = terminal.length - 1;
+        while (min <= max) {
+            int mid = (min + max) / 2;
+            if (item == terminal[mid]) {
+                return true;
+            }
+            if (item.equals(terminal[mid])) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+        return false;           // если элемент есть, то возвращаем его
+
     }
 
 
@@ -136,6 +151,40 @@ public class MyIntegersList implements MyArrayList {
     @Override
     public void clear() {
         terminalSize = 0;
+    }
+
+
+
+    private void sort (){
+        for (int i = 1; i < terminalSize; i++) {
+            int temp = terminal[i];
+            int j = i;
+            while (j > 0 && terminal[j - 1] >= temp) {
+                terminal[j] = terminal[j - 1];
+                j--;
+            }
+            terminal[j] = temp;
+        }
+    }
+
+    private boolean binarySearchContains(int[] arr, int element) {
+        int min = 0;
+        int max = arr.length - 1;
+
+        while (min <= max) {
+            int mid = (min + max) / 2;
+
+            if (element == arr[mid]) {
+                return true;
+            }
+
+            if (element < arr[mid]) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+        return false;
     }
 
 }

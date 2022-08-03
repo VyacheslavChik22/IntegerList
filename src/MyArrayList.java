@@ -75,5 +75,4 @@ public interface MyArrayList {
     // Удалить все элементы из списка.
     void clear();
 
-
 }
