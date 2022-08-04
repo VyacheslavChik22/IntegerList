@@ -165,7 +165,6 @@ class MyIntegersListTest {
         Integer resultAdding2 = myIntegersList.add(TEST_NUM);//добавляем 2элемент
         int result = myIntegersList.arrLength();   //Сравниваем длинну увеличившегося массива.
         assertEquals(result,3);
-
     }
 
 }
