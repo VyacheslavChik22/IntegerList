@@ -158,4 +158,15 @@ class MyIntegersListTest {
         assertArrayEquals(result,TEST_lIST);  //Сравниваем массивы
     }
 
+    @org.junit.jupiter.api.Test
+    void shouldGrowArray() {
+        Integer resultAdding = myIntegersList.add(TEST_NUM);//добавляем 1элемент
+        Integer resultAdding2 = myIntegersList.add(TEST_NUM);//добавляем 2элемент
+        Integer resultAdding3 = myIntegersList.add(TEST_NUM);//добавляем 3элемент
+        int result = myIntegersList.size();
+        assertEquals(result,3);
+
+
+    }
+
 }

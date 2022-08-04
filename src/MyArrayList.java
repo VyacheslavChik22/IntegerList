@@ -75,4 +75,9 @@ public interface MyArrayList {
     // Удалить все элементы из списка.
     void clear();
 
+
+    void sort();
+
+    boolean binarySearchContains(int[] arr, int element);
+
 }

@@ -1,15 +1,16 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MyIntegersList implements MyArrayList {
 
     private Integer[] terminal;
     private int terminalSize;
     private Integer item;
+    private static final double ADD_SIZE = 1.5;
 
     public MyIntegersList() {
         this.terminal = new Integer[2];
     }
-
 
     // для вывода данных создаем доступную копию массива
     @Override
@@ -19,10 +20,12 @@ public class MyIntegersList implements MyArrayList {
 
     @Override
     public Integer add(Integer item) {
-
         // добавляем элемент по значению
         terminal[terminalSize] = item; //фактич. длина масива = колличеству элементов в нем
         terminalSize++;                // переменная фактич. длины масива увеличивается на 1
+        if(terminal.length == terminalSize) {
+            growArray();
+        }
         return item;
     }
 
@@ -54,7 +57,7 @@ public class MyIntegersList implements MyArrayList {
     @Override
     public Integer indexOf(Integer item) {
         for (int i = 0; i < terminalSize; i++) {
-            if (terminal[i] == item) {
+            if (Objects.equals(terminal[i], item)) {
                 return i;
             }
         }
@@ -81,7 +84,6 @@ public class MyIntegersList implements MyArrayList {
         if (index < 0 || index > terminalSize) {
             throw new RuntimeException("Неверный индекс");
         }
-        Integer removeItem = terminal[index];
         if (index != terminal.length - 1) {
             System.arraycopy(terminal, index, terminal, index + 1, terminalSize - index);
         }
@@ -92,13 +94,13 @@ public class MyIntegersList implements MyArrayList {
 
     @Override
     public boolean contains(Integer item) {
-        Integer findItem = indexOf(item); // используем метод поиска элемента
+         // используем метод поиска элемента
         sort();
         int min = 0;
         int max = terminal.length - 1;
         while (min <= max) {
             int mid = (min + max) / 2;
-            if (item == terminal[mid]) {
+            if (Objects.equals(item, terminal[mid])) {
                 return true;
             }
             if (item.equals(terminal[mid])) {
@@ -108,14 +110,13 @@ public class MyIntegersList implements MyArrayList {
             }
         }
         return false;           // если элемент есть, то возвращаем его
-
     }
 
 
     @Override
     public Integer lastIndexOf(Integer item) {
         for (int i = terminalSize - 1; i >= 0; i--) {
-            if (terminal[i] == item) {
+            if (Objects.equals(terminal[i], item)) {
                 return i;
             }
         }
@@ -154,8 +155,8 @@ public class MyIntegersList implements MyArrayList {
     }
 
 
-
-    private void sort (){
+    @Override
+    public void sort() {
         for (int i = 1; i < terminalSize; i++) {
             int temp = terminal[i];
             int j = i;
@@ -167,10 +168,10 @@ public class MyIntegersList implements MyArrayList {
         }
     }
 
-    private boolean binarySearchContains(int[] arr, int element) {
+    @Override
+    public boolean binarySearchContains(int[] arr, int element) {
         int min = 0;
         int max = arr.length - 1;
-
         while (min <= max) {
             int mid = (min + max) / 2;
 
@@ -187,6 +188,17 @@ public class MyIntegersList implements MyArrayList {
         return false;
     }
 
+    private void growArray() {
+        Integer[] terminalNewCopy = new Integer[(int) (terminal.length * ADD_SIZE)];
+        System.arraycopy(terminal, 0, terminalNewCopy, 0, terminal.length);
+        terminal = terminalNewCopy;
+
+    }
+
 }
+
+
+
+
 
 
