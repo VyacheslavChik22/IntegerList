@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyIntegersListTest {
@@ -162,10 +163,8 @@ class MyIntegersListTest {
     void shouldGrowArray() {
         Integer resultAdding = myIntegersList.add(TEST_NUM);//добавляем 1элемент
         Integer resultAdding2 = myIntegersList.add(TEST_NUM);//добавляем 2элемент
-        Integer resultAdding3 = myIntegersList.add(TEST_NUM);//добавляем 3элемент
-        int result = myIntegersList.size();
+        int result = myIntegersList.arrLength();   //Сравниваем длинну увеличившегося массива.
         assertEquals(result,3);
-
 
     }
 

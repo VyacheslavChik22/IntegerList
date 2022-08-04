@@ -80,4 +80,5 @@ public interface MyArrayList {
 
     boolean binarySearchContains(int[] arr, int element);
 
+    int arrLength();
 }

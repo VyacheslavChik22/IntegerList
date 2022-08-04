@@ -6,7 +6,7 @@ public class MyIntegersList implements MyArrayList {
     private Integer[] terminal;
     private int terminalSize;
     private Integer item;
-    private static final double ADD_SIZE = 1.5;
+    // private static final double ADD_SIZE = 1.5;
 
     public MyIntegersList() {
         this.terminal = new Integer[2];
@@ -23,7 +23,7 @@ public class MyIntegersList implements MyArrayList {
         // добавляем элемент по значению
         terminal[terminalSize] = item; //фактич. длина масива = колличеству элементов в нем
         terminalSize++;                // переменная фактич. длины масива увеличивается на 1
-        if(terminal.length == terminalSize) {
+        if (terminal.length == terminalSize) {
             growArray();
         }
         return item;
@@ -94,7 +94,7 @@ public class MyIntegersList implements MyArrayList {
 
     @Override
     public boolean contains(Integer item) {
-         // используем метод поиска элемента
+        // используем метод поиска элемента
         sort();
         int min = 0;
         int max = terminal.length - 1;
@@ -157,15 +157,7 @@ public class MyIntegersList implements MyArrayList {
 
     @Override
     public void sort() {
-        for (int i = 1; i < terminalSize; i++) {
-            int temp = terminal[i];
-            int j = i;
-            while (j > 0 && terminal[j - 1] >= temp) {
-                terminal[j] = terminal[j - 1];
-                j--;
-            }
-            terminal[j] = temp;
-        }
+quickSort(terminal,0,terminal.length-1);
     }
 
     @Override
@@ -189,12 +181,45 @@ public class MyIntegersList implements MyArrayList {
     }
 
     private void growArray() {
-        Integer[] terminalNewCopy = new Integer[(int) (terminal.length * ADD_SIZE)];
+       /* Integer[] terminalNewCopy = new Integer[(int) (terminal.length * ADD_SIZE)];
         System.arraycopy(terminal, 0, terminalNewCopy, 0, terminal.length);
-        terminal = terminalNewCopy;
-
+        terminal = terminalNewCopy;*/
+        terminal = Arrays.copyOf(terminal, terminal.length + terminal.length / 2);
+    }
+    @Override
+    public int arrLength() {
+        return terminal.length;
     }
 
+    private void quickSort(Integer[] terminal, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(terminal, begin, end);
+
+            quickSort(terminal, begin, partitionIndex - 1);
+            quickSort(terminal, partitionIndex + 1, end);
+        }
+    }
+
+    private static int partition(Integer[] terminal, int begin, int end) {
+        int pivot = terminal[end];
+        int i = (begin - 1);
+
+        for (int j = begin; j < end; j++) {
+            if (terminal[j] <= pivot) {
+                i++;
+
+                swapElements(terminal, i, j);
+            }
+        }
+
+        swapElements(terminal, i + 1, end);
+        return i + 1;
+    }
+    private static void swapElements(Integer[] arr, int i1, int i2) {
+        int temp = arr[i1];
+        arr[i1] = arr[i2];
+        arr[i2] = temp;
+    }
 }
 
 
